@@ -1,5 +1,5 @@
 {
-  "name": "CHANGE THIS : Extension boilerplate",
+  "name": "Quote Verifier",
   "version": "0.0.1",
   "manifest_version": 2,
   "description": "This extension was created with the awesome extensionizr.com",
@@ -10,10 +10,6 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
-  "background": {
-    "page": "src/bg/background.html",
-    "persistent": true
-  },
   "browser_action": {
     "default_icon": "icons/icon19.png",
     "default_title": "browser action demo",
