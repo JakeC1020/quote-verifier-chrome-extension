@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html ng-app="verifier">
 <head>
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.custom.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	
+	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.custom.min.css">
+	<link rel="stylesheet" type="text/css" href="../../css/main.css">
+	<script src="../../js/angular.min.js"></script>
+	<script src="../../js/jquery.min.js"></script>
+	<script src="../../js/main.js"></script>
 </head>
 <body >
-	<div class="container" ng-controller="verfierController as verifierCtrl">
+	<div class="container" ng-controller="verifierController">
 		<h2>Verify Your Quote</h2>
-		<form name="quoteForm" novalidate ng-submit="quoteForm.$valid && verifierCtrl.checkQuote()">
+		<form name="quoteForm" novalidate ng-submit="verifierController.checkQuote(verifierController.author, verifierController.quote)">
 			<div class="form-group">
 				<label>Quote:</label>
-				<input class="form-control" type="text" required>
+				<input class="form-control" type="text" ng-model="verifierController.quote" required>
 			</div>
 			<div class="form-group">
 				<label>Author:</label>
-				<input class="form-control" type="text" required>
+				<input class="form-control" type="text" ng-model="verifierController.author" required>
 			</div>
 			
 			<button type="submit" class="btn btn-primary">Verify It!</button>
 		</form>
+		<div ng-hide="verifierController.resultsBack" ng-class="verifierController.getBgColor(verifierController.message)">
+			<h2>{{verifierController.authenticity}}</h2>
+			<p>{{verifierController.message}}</p>
+		</div>
 	</div>
 
-	<script src="/js/angular.min.js"></script>
-	<script src="/js/jquery.min.js"></script>
-	<script src="/js/main.js"></script>
+
+
+	
 </body>
 </html>
 

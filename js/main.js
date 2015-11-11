@@ -1,20 +1,33 @@
 (function () {
-	var app = angular.modue('verifier', []);
+	var app = angular.module('verifier', []);
 	app.controller('verifierController', ['$http', function($http){
-		var quoteVerifier = this;
-		quoteVerifier.resultsBack = false;
-		quoteVerifier.message = "";
-		quoteVerifier.authenticity = "";
+		var verifierCtrl = this;
+		verifierCtrl.resultsBack = false;
+		verifierCtrl.quote;
+		verifierCtrl.author;
+		verifierCtrl.message = "";
+		verifierCtrl.authenticity = "";
 
-		quoteVerifier.showResults = function (data) {
+		verifierCtrl.showResults = function (data) {
 			var cleanedData = JSON.parse(data);
-			// TODO: Occupy display with data
-			quoteVerifier.resultsBack = true;
+			if (cleanedData.error != true) {
+				verifierCtrl.resultsBack = true;
+				verifierCtrl.message = cleanedData.message;
+				verifierCtrl.authenticity = cleanedData.authenticity;
+			}
 		};
-		quoteVerifier.checkQuote = function (author, quote) {
-			$http.get('ourURL/api?author=' + author + '?quote=' + quote).success(function (data) {
-				quoteVerifier.showResults(data);
-			});
+		verifierCtrl.checkQuote = function (author, quote) {
+			console.log("run");
+			/*$http.get('ourURL/api?author=' + author + '?quote=' + quote).success(function (data) {
+				verifierCtrl.showResults(data);
+			});*/
+			verifierCtrl.showResults(JSON.stringify({
+				"error": "null",
+				"authorName": "Douglas_Adams",
+				"quote": "when you're a student or whatever,",
+				"authenticity": "True",
+				"message": "We found this quote listed on the Wikiquote page for the given author"
+			}));
 		};
 	}]);
 })(); // Preserve global scope with iife
