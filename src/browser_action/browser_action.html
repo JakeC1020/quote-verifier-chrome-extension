@@ -4,27 +4,27 @@
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.custom.min.css">
 	<link rel="stylesheet" type="text/css" href="../../css/main.css">
 	<script src="../../js/angular.min.js"></script>
-	<script src="../../js/jquery.min.js"></script>
+	<!--<script src="../../js/jquery.min.js"></script>-->
 	<script src="../../js/main.js"></script>
 </head>
 <body >
 	<div class="container" ng-controller="verifierController">
 		<h2>Verify Your Quote</h2>
-		<form name="quoteForm" novalidate ng-submit="verifierController.checkQuote(verifierController.author, verifierController.quote)">
+		<form name="quoteForm" novalidate ng-submit="checkQuote(quoteObj)">
 			<div class="form-group">
 				<label>Quote:</label>
-				<input class="form-control" type="text" ng-model="verifierController.quote" required>
+				<input class="form-control" type="text" ng-model="quoteObj.quote" required>
 			</div>
 			<div class="form-group">
 				<label>Author:</label>
-				<input class="form-control" type="text" ng-model="verifierController.author" required>
+				<input class="form-control" type="text" ng-model="quoteObj.author" required>
 			</div>
 			
 			<button type="submit" class="btn btn-primary">Verify It!</button>
 		</form>
-		<div ng-hide="verifierController.resultsBack" ng-class="verifierController.getBgColor(verifierController.message)">
-			<h2>{{verifierController.authenticity}}</h2>
-			<p>{{verifierController.message}}</p>
+		<div ng-show="resultsBack" ng-class="getBgColor(message)">
+			<h2>{{authenticity}}</h2>
+			<p>{{message}}</p>
 		</div>
 	</div>
 

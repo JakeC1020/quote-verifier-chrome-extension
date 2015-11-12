@@ -1,33 +1,31 @@
-(function () {
-	var app = angular.module('verifier', []);
-	app.controller('verifierController', ['$http', function($http){
-		var verifierCtrl = this;
-		verifierCtrl.resultsBack = false;
-		verifierCtrl.quote;
-		verifierCtrl.author;
-		verifierCtrl.message = "";
-		verifierCtrl.authenticity = "";
+var app = angular.module('verifier', [ ]);
+app.controller('verifierController',  function($scope, $http){
+	$scope.resultsBack = false;
+	$scope.quoteObj = {};
+	$scope.message = "";
+	$scope.authenticity = "";
 
-		verifierCtrl.showResults = function (data) {
-			var cleanedData = JSON.parse(data);
-			if (cleanedData.error != true) {
-				verifierCtrl.resultsBack = true;
-				verifierCtrl.message = cleanedData.message;
-				verifierCtrl.authenticity = cleanedData.authenticity;
-			}
-		};
-		verifierCtrl.checkQuote = function (author, quote) {
-			console.log("run");
-			/*$http.get('ourURL/api?author=' + author + '?quote=' + quote).success(function (data) {
-				verifierCtrl.showResults(data);
-			});*/
-			verifierCtrl.showResults(JSON.stringify({
-				"error": "null",
-				"authorName": "Douglas_Adams",
-				"quote": "when you're a student or whatever,",
-				"authenticity": "True",
-				"message": "We found this quote listed on the Wikiquote page for the given author"
-			}));
-		};
-	}]);
-})(); // Preserve global scope with iife
+	$scope.showResults = function (data) {
+		//var cleanedData = JSON.parse(data);
+		if (data.error != 'true') {
+			console.log("No Error");
+			console.log(data);
+			$scope.resultsBack = true;
+			$scope.message = data.message;
+			$scope.authenticity = data.authenticity;
+			console.log($scope.message + " " + $scope.authenticity);
+		}
+		else {
+			console.log("else");
+		}
+	};
+	$scope.checkQuote = function (quoteObj) {
+		var quote = quoteObj.quote;
+		var author = quoteObj.author;
+		console.log("run");
+		console.log('https://quoteverifier.herokuapp.com/api?author=' + author + '&quote=' + quote);
+		$http.get('https://quoteverifier.herokuapp.com/api?author=' + author + '&quote=' + quote).success(function (data) {
+			$scope.showResults(data);
+		}).error(function () {console.log("error catched");});
+	};
+});
