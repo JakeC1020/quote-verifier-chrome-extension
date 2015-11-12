@@ -4,6 +4,7 @@ app.controller('verifierController',  function($scope, $http){
 	$scope.quoteObj = {};
 	$scope.message = "";
 	$scope.authenticity = "";
+	$scope.wikiUrl="";
 
 	// Used for background coloring
 	$scope.success = false;
@@ -38,6 +39,8 @@ app.controller('verifierController',  function($scope, $http){
 			$scope.message = data.message;
 			$scope.authenticity = data.authenticity;
 			$scope.resultsBack = true;
+			$scope.wikiUrl = data.link;
+			console.log($scope.wikiUrl);
 		}
 		else {
 			console.log("else");
