@@ -1,6 +1,7 @@
 var app = angular.module('verifier', [ ]);
 app.controller('verifierController',  function($scope, $http){
 	$scope.resultsBack = false;
+	$scope.showLoading = false;
 	$scope.quoteObj = {};
 	$scope.message = "";
 	$scope.authenticity = "";
@@ -47,10 +48,12 @@ app.controller('verifierController',  function($scope, $http){
 		}
 	};
 	$scope.checkQuote = function (quoteObj) {
+		$scope.showLoading = true;
 		var quote = quoteObj.quote;
 		var author = quoteObj.author;
 		console.log('https://quoteverifier.herokuapp.com/api?author=' + author + '&quote=' + quote);
 		$http.get('https://quoteverifier.herokuapp.com/api?author=' + author + '&quote=' + quote).success(function (data) {
+			$scope.showLoading = false;
 			$scope.showResults(data);
 		}).error(function () {console.log("error catched");});
 	};

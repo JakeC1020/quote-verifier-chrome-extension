@@ -22,6 +22,9 @@
 			
 			<button type="submit" class="btn btn-primary">Verify It!</button>
 		</form>
+		<div ng-show="showLoading">
+			<img src="../../icons/loading.gif" alt="Loading..." class="center-block">
+		</div>
 		<div ng-show="resultsBack" ng-class="{'bg-success': success, 'bg-info': info, 'bg-warning': warning, 'bg-danger': danger }">
 			<div class="container text-center">
 				<h2>{{authenticity}}</h2>
