@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="verifier" ng-csp>
 <head>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../../css/materialize.css">
+	<link rel="stylesheet" type="text/css" href="../../css/materialize.min.css">
 	<link rel="stylesheet" type="text/css" href="../../css/main.css">
 	<script src="../../js/angular.min.js"></script>
 	<script src="../../js/jquery-2.1.4.min.js"></script>
@@ -34,17 +33,6 @@
 		  	</div>
 		</div>
 
-		<!--<div ng-show="resultsBack">
-			<div class="card"  ng-class="{'bg-success': success, 'bg-info': info, 'bg-warning': warning, 'bg-danger': danger }">
-            <div class="card-content">
-              <span class="card-title">{{authenticity}}</span>
-              <p>{{message}}</p>
-            </div>
-            <div class="card-action">
-            	Source: <a ng-href="{{wikiUrl}}" target="_blank">wikiquote.org</a>
-            </div>
-          </div>
-	    </div>-->
 	    <div ng-show="resultsBack">
 		    <div class="card">
 	            <div class="card-image">
@@ -62,14 +50,6 @@
 	            </div>
 	          </div>
 	    </div>
-
-		<!--<div ng-show="resultsBack" ng-class="{'bg-success': success, 'bg-info': info, 'bg-warning': warning, 'bg-danger': danger }">
-			<div>
-				<h2 style="color:black">{{authenticity}}</h2>
-				<p>{{message}}</p>
-				<a ng-href="{{wikiUrl}}" target="_blank">{{wikiUrl}}</a>
-			</div>
-		</div>-->
 	</div>
 
 </body>
