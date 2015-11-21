@@ -1,42 +1,77 @@
 <!DOCTYPE html>
 <html ng-app="verifier" ng-csp>
 <head>
-	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.custom.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../css/materialize.css">
 	<link rel="stylesheet" type="text/css" href="../../css/main.css">
 	<script src="../../js/angular.min.js"></script>
-	<!--<script src="../../js/jquery.min.js"></script>-->
+	<script src="../../js/jquery-2.1.4.min.js"></script>
+	<script src="../../js/materialize.min.js"></script>
 	<script src="../../js/main.js"></script>
 </head>
 <body >
 	<div class="container main" ng-controller="verifierController">
-		<h2 class="text-center">Verify Your Quote</h2>
+		<h2 class="center">Verify Your Quote</h2>
+
 		<form name="quoteForm" novalidate ng-submit="checkQuote(quoteObj)">
-			<div class="form-group">
-				<label>Quote:</label>
-				<input class="form-control" type="text" ng-model="quoteObj.quote" required>
+			<label>Enter Quote</label>
+			<div class="materialInputDiv" id="quoteInputDiv">
+				<i class="icon material-icons">chat_bubble_outline</i>
+				<input type="text" id="quoteInput" class="materialInput" ng-model="quoteObj.quote" required>
 			</div>
-			<div class="form-group">
-				<label>Author:</label>
-				<input class="form-control" type="text" ng-model="quoteObj.author" required>
+
+			<label>Enter Author</label>
+			<div class="materialInputDiv" id="authorInputDiv">
+			<i class="icon material-icons">perm_identity</i>
+				<input type="text" id="authorInput" class="materialInput" ng-model="quoteObj.author" required>
 			</div>
-			
-			<button type="submit" class="btn btn-primary">Verify It!</button>
+
+			<button class="btn waves-effect blue waves-light center" type="submit">Verify<i class="material-icons right">send</i></button>
 		</form>
 		<div ng-show="showLoading">
-			<img src="../../icons/loading.gif" alt="Loading..." class="center-block">
+			<div class="progress">
+		    	<div class="indeterminate"></div>
+		  	</div>
 		</div>
-		<div ng-show="resultsBack" ng-class="{'bg-success': success, 'bg-info': info, 'bg-warning': warning, 'bg-danger': danger }">
-			<div class="container text-center">
-				<h2>{{authenticity}}</h2>
+
+		<!--<div ng-show="resultsBack">
+			<div class="card"  ng-class="{'bg-success': success, 'bg-info': info, 'bg-warning': warning, 'bg-danger': danger }">
+            <div class="card-content">
+              <span class="card-title">{{authenticity}}</span>
+              <p>{{message}}</p>
+            </div>
+            <div class="card-action">
+            	Source: <a ng-href="{{wikiUrl}}" target="_blank">wikiquote.org</a>
+            </div>
+          </div>
+	    </div>-->
+	    <div ng-show="resultsBack">
+		    <div class="card">
+	            <div class="card-image">
+	              <img ng-src="../../icons/success.jpg" ng-show="success">  
+	              <img ng-src="../../icons/info.jpg" ng-show="info">  
+	              <img ng-src="../../icons/warning.jpg" ng-show="warning">  
+	              <img ng-src="../../icons/danger.jpg" ng-show="danger">  
+	              <span class="card-title">{{authenticity}}</span>
+	            </div>
+	            <div class="card-content">
+	              <p>{{message}}</p>
+	            </div>
+	            <div class="card-action">
+	              Source: <a ng-href="{{wikiUrl}}" target="_blank">wikiquote.org</a>
+	            </div>
+	          </div>
+	    </div>
+
+		<!--<div ng-show="resultsBack" ng-class="{'bg-success': success, 'bg-info': info, 'bg-warning': warning, 'bg-danger': danger }">
+			<div>
+				<h2 style="color:black">{{authenticity}}</h2>
 				<p>{{message}}</p>
 				<a ng-href="{{wikiUrl}}" target="_blank">{{wikiUrl}}</a>
 			</div>
-		</div>
+		</div>-->
 	</div>
 
-
-
-	
 </body>
 </html>
 
