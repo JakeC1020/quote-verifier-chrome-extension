@@ -35,7 +35,6 @@ app.controller('verifierController',  function($scope, $http){
 
 	$scope.showResults = function (data) {
 		if (data.error !== 'true') {
-			data = JSON.parse(data);
 			$scope.pickBackground(data.authenticity);
 			$scope.message = data.message;
 			$scope.authenticity = data.authenticity;
@@ -54,9 +53,7 @@ app.controller('verifierController',  function($scope, $http){
 		console.log('https://quoteverifier.herokuapp.com/api?author=' + author + '&quote=' + quote);
 		$http.get('https://quoteverifier.herokuapp.com/api?author=' + author + '&quote=' + quote).success(function (data) {
 			$scope.showLoading = false;
-			// Temp fix for data being returned with extra quotation marks and '/' in api
-			var finalData = data.replace(/\\/g, "").slice(1,-1);
-			$scope.showResults(finalData);
+			$scope.showResults(data);
 		}).error(function () {console.log("error catched");});
 	};
 });
