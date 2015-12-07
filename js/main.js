@@ -1,3 +1,23 @@
+// jQuery code for design
+$(function() {      //aka document.ready
+    $("#quoteInput").focus( function() {
+        $("#quoteInputDiv").addClass("newInput");
+    });
+
+    $("#quoteInput").blur( function() {
+        $("#quoteInputDiv").removeClass("newInput");
+    });
+
+    $("#authorInput").focus( function() {
+        $("#authorInputDiv").addClass("newInput");
+    });
+
+    $("#authorInput").blur( function() {
+        $("#authorInputDiv").removeClass("newInput");
+    });
+});
+
+// Anuglar code
 var app = angular.module('verifier', [ ]);
 app.controller('verifierController',  function($scope, $http){
 	$scope.resultsBack = false;
